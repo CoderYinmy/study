@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>h5 网页强制横屏</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .landscape body {
+        background: #ff9900;
+        transform: rotate(90deg);
+      }
+      .box {
+        width: 300px;
+        height: 200px;
+        margin: 0 auto;
+        background-color: #03ccbb;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">lol</div>
+  </body>
+  <script>
+    function updateOrientation() {
+      var width = document.documentElement.clientWidth;
+      var height = document.documentElement.clientHeight;
+      var orientation = window.orientation;
+      var HTMLNode = document.body.parentNode;
+      var bodyNode = document.body;
+      console.log(orientation);
+      if (width < height && orientation == 0) {
+        orientation = "landscape";
+        bodyNode.style.width = height + "px";
+        bodyNode.style.height = width + "px";
+        bodyNode.style.transformOrigin = (width / 2 + "px", width / 2 + "px");
+      }
+      HTMLNode.setAttribute("class", orientation);
+    }
+    window.addEventListener("load", updateOrientation, false);
+  </script>
+</html>
